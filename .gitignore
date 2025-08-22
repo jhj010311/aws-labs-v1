@@ -1,0 +1,85 @@
+# Node.js
+gemini/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+
+# React (Create React App specific)
+build/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# IDEs (e.g., IntelliJ, WebStorm)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+log/
+
+# Temporary files
+*.tmp
+*~
+~*
+
+# Kubernetes specific (if any local generated files)
+# For example, if you generate kubeconfig files locally
+# .kube/config
+
+# Docker
+*.swp
+.dockerignore # This file itself should be committed, but adding it here as a reminder
+
+# =========================
+# Spring Boot (Java) 추가
+# =========================
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# 환경파일
+*.war
+*.jar
+
+# Eclipse
+*.classpath
+*.project
+*.settings/
+
+# 기타 Java 관련
+*.class
+bin/
+out/
+
+# Local 개발 환경 변수
+.env
