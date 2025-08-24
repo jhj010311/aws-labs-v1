@@ -46,10 +46,5 @@ public class TodoController {
         todoService.deleteTodoById(id);
         return ResponseEntity.ok("Todo deleted successfully");
     }
-
-    @GetMapping("/ping")
-    public String ping() {
-        return "pong - CI/CD demo v1 ...";
-    }
 }
 

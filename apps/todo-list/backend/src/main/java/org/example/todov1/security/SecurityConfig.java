@@ -44,8 +44,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().and()  // CORS 활성화
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/api/auth/**", "/api/todos/ping").permitAll()
-                        .requestMatchers("/actuator/health").permitAll()                        
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/actuator/health").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -60,7 +60,7 @@ public class SecurityConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);  // 자격 증명 허용 (예: 쿠키)
+        config.setAllowCredentials(false);  // 자격 증명 허용 (예: 쿠키)
         config.addAllowedOrigin(allowedOrigins);  // 허용할 도메인
         config.addAllowedHeader("*");  // 모든 헤더 허용
         config.addAllowedMethod("*");  // 모든 HTTP 메서드 허용
