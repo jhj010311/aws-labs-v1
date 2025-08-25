@@ -2,23 +2,20 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-# Gradle Wrapper 파일 복사
-COPY gradlew /app/gradlew
-COPY gradle /app/gradle
-RUN chmod +x ./gradlew
+# Gradle 설치
+RUN apt-get update && apt-get install -y wget unzip && \
+    wget https://services.gradle.org/distributions/gradle-8.3-bin.zip -P /tmp && \
+    unzip -d /opt/gradle /tmp/gradle-8.3-bin.zip && \
+    ln -s /opt/gradle/gradle-8.3/bin/gradle /usr/bin/gradle
 
-# 빌드 설정 파일 복사
-COPY build.gradle /app/build.gradle
-COPY settings.gradle /app/settings.gradle
-
-# 의존성 미리 다운로드
-RUN ./gradlew build --no-daemon --parallel --continue --stacktrace -x test || true
-
-# 전체 소스 코드 복사 (실제 실행 시에는 볼륨으로 대체)
+# 전체 소스 복사
 COPY . .
 
-# 개발 환경에서는 디버깅 포트를 열어둡니다.
+# 의존성 빌드
+RUN gradle build -x test --no-daemon
+
+# Spring Boot 포트
 EXPOSE 8080
 
-# 애플리케이션을 devtools 모드로 실행
-CMD ["./gradlew", "bootRun"]
+# 애플리케이션 실행
+CMD ["gradle", "bootRun"]
