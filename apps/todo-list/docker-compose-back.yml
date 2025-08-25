@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8080:8080" # Spring Boot의 기본 포트
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://43.203.114.186:3306/todolist
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+      CORS_ALLOWED_ORIGINS: http://localhost:3000,http://sesac-jhj-todolist-bucket.s3-website.ap-northeast-2.amazonaws.com
+      JWT_SECRET: dmVyeWxvbmcgc2VjcmV0IGtleSBmb3IgbG9jYWwgZGV2ZWxvcG1lbnQgdXNlIG9ubHkgMTIzNDU2Nzg5MA==
+    networks:
+      - todo-net
+
+volumes:
+  mysql-data:
+
+networks:
+  todo-net:
+    driver: bridge
